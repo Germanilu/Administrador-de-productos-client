@@ -1,4 +1,4 @@
-import { Link, Form, useActionData, type ActionFunctionArgs } from "react-router-dom"
+import { Link, Form, redirect, useActionData, type ActionFunctionArgs } from "react-router-dom"
 import ErrorMessage from "../components/ErrorMessage"
 import { addProduct } from "../services/ProductService"
 
@@ -12,9 +12,9 @@ export async function action({request}: ActionFunctionArgs) {
     if(error.length){
         return error
     }
-    addProduct(data)
-
-    return {}
+    await addProduct(data)
+    //Redirecciona a homepage cuando acaba de hacer el post 
+    return redirect('/')
 }
 
 export default function NewProduct() {
