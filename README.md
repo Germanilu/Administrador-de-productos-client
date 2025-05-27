@@ -28,10 +28,15 @@ Aplicación web para gestionar un catálogo de productos, con funcionalidades de
 ## 📁 Project Structure
 src/
 │
+
 ├── components/ # Componentes reutilizables (Formularios, Filas de Tabla, Mensajes)
+
 ├── services/ # Lógica de acceso a datos (ProductService.ts)
+
 ├── views/ # Páginas principales (Products, NewProduct, EditProduct)
+
 ├── utils.ts # Utilidades generales (formato de moneda, parseo booleano)
+
 └── types.ts # Tipos de datos globales (Product)
 
 
