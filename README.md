@@ -42,5 +42,10 @@ src/
 ## 🧠 Rest API 
 [rest-api-express-ts](https://github.com/Germanilu/rest-api-express-ts)
 
+
+## ⚡ App
+[Try the application](https://rest-apis-typescript-frontend-nine-ecru.vercel.app/)
+
+
 ## ✍️ Autor
 ## Luciano Germani
