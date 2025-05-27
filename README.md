@@ -27,7 +27,6 @@ Aplicación web para gestionar un catálogo de productos, con funcionalidades de
 
 ## 📁 Project Structure
 src/
-│
 
 ├── components/ # Componentes reutilizables (Formularios, Filas de Tabla, Mensajes)
 
