@@ -4,6 +4,7 @@ import { getProductsById, updateProduct } from "../services/ProductService"
 import type { Product } from "../types"
 import ProductForm from "../components/ProductForm"
 
+// Loader: carga el producto por ID, si no existe redirige al home
 export async function loader({ params }: LoaderFunctionArgs) {
     if (params.id !== undefined) {
         const product = await getProductsById(+params.id)
@@ -14,7 +15,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
     }
 }
 
-// Action es una funcion de react-router-dom donde proceso todos los datos del formulario. Esta funcion siempre retorna algo
+// Action (procesa el formulario para editar un producto) es una funcion de react-router-dom donde proceso todos los datos del formulario. Esta funcion siempre retorna algo
 export async function action({ request, params }: ActionFunctionArgs) {
     const data = Object.fromEntries(await request.formData())
     let error = ''
@@ -31,12 +32,20 @@ export async function action({ request, params }: ActionFunctionArgs) {
     }
 }
 
-
 const availabilityOptions = [
     { name: 'Disponible', value: true },
     { name: 'No Disponible', value: false }
 ]
 
+
+/**
+ * Página para editar un producto existente.
+ * 
+ * - Carga los datos del producto desde el backend mediante `loader()`.
+ * - Usa una acción `action()` para procesar y validar el formulario de edición.
+ * - Muestra errores de validación si existen.
+ * - Permite cambiar nombre, precio y disponibilidad.
+ */
 export default function EditProduct() {
     //Recupero el Producto seleccionado con useLoaderData de react-router-dom
     const product = useLoaderData() as Product
@@ -63,7 +72,7 @@ export default function EditProduct() {
                 className="mt-10"
                 method='POST'
             >
-                <ProductForm product={product}/>
+                <ProductForm product={product} />
                 <div className="mb-4">
                     <label
                         className="text-gray-800"

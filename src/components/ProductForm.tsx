@@ -4,7 +4,11 @@ type ProductFormProps = {
     product?: Product
 }
 
-
+/**
+ * Componente de formulario reutilizable para crear o editar un producto.
+ * - Muestra campos para nombre y precio.
+ * - Usa `defaultValue` para precargar valores si se está editando.
+ */
 export default function ProductForm({product}:ProductFormProps) {
     return (
         <>

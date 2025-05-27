@@ -3,14 +3,14 @@ import ErrorMessage from "../components/ErrorMessage"
 import { addProduct } from "../services/ProductService"
 import ProductForm from "../components/ProductForm"
 
-// Action es una funcion de react-router-dom donde proceso todos los datos del formulario. Esta funcion siempre retorna algo
-export async function action({request}: ActionFunctionArgs) {
+// Action: procesa los datos del formulario para crear un nuevo producto
+export async function action({ request }: ActionFunctionArgs) {
     const data = Object.fromEntries(await request.formData())
     let error = ''
-    if(Object.values(data).includes('')){
+    if (Object.values(data).includes('')) {
         error = 'Todos los campos son obligatorios'
     }
-    if(error.length){
+    if (error.length) {
         return error
     }
     await addProduct(data)
@@ -18,6 +18,14 @@ export async function action({request}: ActionFunctionArgs) {
     return redirect('/')
 }
 
+
+/**
+ * Página para registrar un nuevo producto.
+ * 
+ * - Renderiza un formulario de creación.
+ * - Usa una acción `action()` para validar y guardar los datos enviados.
+ * - Muestra errores si faltan campos obligatorios.
+ */
 export default function NewProduct() {
 
     //Este es un hook que permite recuperar el error del formulario ya que en principio no esta conectado con el componente al procesarse en la funcion action() de arriba
@@ -42,7 +50,7 @@ export default function NewProduct() {
                 className="mt-10"
                 method='POST'
             >
-                <ProductForm/>
+                <ProductForm />
                 <input
                     type="submit"
                     className="mt-5 w-full bg-indigo-600 p-2 text-white font-bold text-lg cursor-pointer rounded"

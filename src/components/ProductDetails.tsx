@@ -7,6 +7,10 @@ type ProductDetailsProps = {
     product: Product
 }
 
+/**
+ * Acción para eliminar un producto.
+ * Se ejecuta cuando el usuario envía el formulario de eliminación.
+ */
 export async function action({ params }: ActionFunctionArgs) {
     if (params.id !== undefined) {
         await deleteProduct(+params.id)
@@ -14,7 +18,10 @@ export async function action({ params }: ActionFunctionArgs) {
     }
 }
 
-
+/**
+ * Componente que representa una fila en la tabla de productos.
+ * Muestra el nombre, precio, disponibilidad y acciones de editar/eliminar.
+ */
 export default function ProductDetails({ product }: ProductDetailsProps) {
     const fetcher = useFetcher()
     const navigate = useNavigate()

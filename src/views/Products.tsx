@@ -3,19 +3,28 @@ import { getProducts, updateAvailability } from "../services/ProductService"
 import ProductDetails from "../components/ProductDetails";
 import type { Product } from "../types";
 
-
+// Loader: obtiene todos los productos
 export async function loader() {
   const products = await getProducts()
   return products
 }
 
-export async function action({request}: ActionFunctionArgs){
+// Action: actualiza la disponibilidad de un producto
+export async function action({ request }: ActionFunctionArgs) {
   const data = Object.fromEntries(await request.formData())
-  
+
   await updateAvailability(+data.id)
   return null
 }
 
+
+/**
+ * Página principal que muestra la lista de productos.
+ * 
+ * - Carga los productos desde el backend mediante `loader()`.
+ * - Usa una acción `action()` para cambiar la disponibilidad (POST con fetcher).
+ * - Renderiza una tabla con todos los productos y sus acciones.
+ */
 export default function Products() {
   const products = useLoaderData() as Product[]
 
@@ -42,7 +51,7 @@ export default function Products() {
           </thead>
           <tbody>
             {products.map(product => (
-              <ProductDetails 
+              <ProductDetails
                 key={product.id}
                 product={product}
               />
